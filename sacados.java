@@ -21,12 +21,9 @@ public class sacados {
         for(int i = 0; i < N; i++) {
             x[i] = model.intVar("X"+i, 0, 1);
         }
-
-        // creation des contraintes
         model.scalar(x, w, "<=", W).post();
         model.scalar(x, v, ">=", V).post();
-
-        // get Solution
+        // Résolution
         Solution solution = model.getSolver().findSolution();
         if (solution != null) {
             System.out.println(solution.toString());

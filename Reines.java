@@ -25,10 +25,9 @@ public class Reines {
             IntVar[] col = new IntVar[N]; 
             for(int i = 0; i < N; i++) {
                 col[i] = x[i][j];
+            }
+            model.sum(col, "=", 1).post(); 
         }
-
-        model.sum(col, "=", 1).post(); 
-    }
 
     ArrayList<IntVar>[] dUp = new ArrayList[2 * N-1];
     for(int k = 0; k < 2 * N-1; k++) {
@@ -45,7 +44,8 @@ public class Reines {
         IntVar[] tmp = dUp[k].toArray(new IntVar[0]);
             model.sum(tmp, "<=", 1).post(); 
     }
-
+    
+    // Résolution
     Solution solution = model.getSolver().findSolution();
         if(solution != null) {
             System.out.println(solution.toString()); 

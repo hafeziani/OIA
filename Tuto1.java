@@ -17,6 +17,7 @@ public class Tuto1 {
                 model.arithm(vars[i], "!=", vars[j], "+", j-i).post();
             }
         }
+        // Résolution
         Solution solution = model.getSolver().findSolution();
         if(solution != null) {
             System.out.println(solution.toString());
